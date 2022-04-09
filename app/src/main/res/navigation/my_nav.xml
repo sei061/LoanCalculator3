@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/annuitetFragment">
+
+    <fragment
+        android:id="@+id/annuitetFragment"
+        android:name="com.example.loancalculator3.AnnuitetFragment"
+        android:label="annuitet_fragment"
+        tools:layout="@layout/annuitet_fragment" >
+        <action
+            android:id="@+id/action_annuitetFragment_to_serieFragment"
+            app:destination="@id/serieFragment" />
+        <action
+            android:id="@+id/action_annuitetFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serieFragment"
+        android:name="com.example.loancalculator3.SerieFragment"
+        android:label="serie_fragment"
+        tools:layout="@layout/serie_fragment" >
+        <action
+            android:id="@+id/action_serieFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_serieFragment_to_annuitetFragment"
+            app:destination="@id/annuitetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.loancalculator3.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_annuitetFragment"
+            app:destination="@id/annuitetFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_serieFragment"
+            app:destination="@id/serieFragment" />
+    </fragment>
+</navigation>
