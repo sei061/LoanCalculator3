@@ -106,6 +106,13 @@ class SharedViewModel: ViewModel() {
         }
 
     }
+    fun clean(){
+    debtList.clear()
+    numOfYearList.clear()
+    interestList.clear()
+    termList.clear()
+    deductionList.clear()
+    }
 }
 
 

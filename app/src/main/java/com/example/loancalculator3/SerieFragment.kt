@@ -43,13 +43,12 @@ class SerieFragment : Fragment() {
         }
 
         binding.calculateButton.setOnClickListener {
-
-
+            sharedViewModel.clean()
             sharedViewModel.setLoanAmount(binding.serieLoan.text.toString())
             sharedViewModel.setInterestRate(binding.serieInterest.text.toString())
             sharedViewModel.setInstallments(binding.serieInstallments.text.toString())
             sharedViewModel.calculateSerialPayment()
-            var debtString : String = ""
+            var debtString : String = "Debt:\n"
                 for (i in sharedViewModel.debtList) {
                     debtString += i
                     debtString += "\n"
