@@ -77,13 +77,30 @@ class SharedViewModel: ViewModel() {
             interestList.add(interest)
             deductionList.add(deduction)
         }
-
-
     }
+    fun calculateSerialPayment() {
+        val loanAmountDouble = loanAmount.value!!.toDouble()
+        val interestRateDouble = interestRate.value!!.toDouble()
+        val installmentsDouble = installments.value!!.toDouble()
 
+        debtList.add(loanAmountDouble.toString())
 
+        for (i in 0..installmentsDouble.toInt()) {
+            deductionList.add(i, (loanAmountDouble/installmentsDouble).toString())
+        }
 
+        for (i in 1..installmentsDouble.toInt()) {
+            debtList.add(i, (debtList[i-1].toDouble() - (loanAmountDouble / installmentsDouble)).toString())
+        }
 
+        for (i in 0..installmentsDouble.toInt()) {
+            interestList.add((debtList[i].toDouble() * interestRateDouble).toString())
+        }
+
+        for (i in 0..installmentsDouble.toInt()) {
+           termList.add(i, installmentsDouble.toString())
+        }
+    }
 }
 
 
