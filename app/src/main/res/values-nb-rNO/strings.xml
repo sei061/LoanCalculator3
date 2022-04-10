@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lånekalkulator</string>
+    <string name="loan_amount">Velg Lånesum</string>
+    <string name="interest_amount">Velg Rente</string>
+    <string name="installments_amount">Velg Antall Avdrag</string>
+    <string name="Annuity">Annuitet</string>
+    <string name="Serial">Serie</string>
+    <string name="Settings">Innstillinger</string>
+    <string name="Calculate">Kalkuler</string>
+</resources>
