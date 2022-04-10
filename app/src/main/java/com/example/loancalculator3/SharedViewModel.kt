@@ -102,7 +102,7 @@ class SharedViewModel: ViewModel() {
            termList.add(i,i.toString())
         }
         for (i in 0..installmentsDouble.toInt()) {
-            numOfYearList.add(i,(installmentsDouble.toInt()/12).toString())
+            numOfYearList.add(i,(i/12).toString())
         }
 
     }
