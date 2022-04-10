@@ -3,6 +3,7 @@ package com.example.loancalculator3
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
 
 class SharedViewModel: ViewModel() {
 

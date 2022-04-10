@@ -1,16 +1,13 @@
 package com.example.loancalculator3
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
-import com.example.loancalculator3.databinding.AnnuitetFragmentBinding
 import com.example.loancalculator3.databinding.SerieFragmentBinding
 
 class SerieFragment : Fragment() {
@@ -47,11 +44,16 @@ class SerieFragment : Fragment() {
         }
 
         binding.calculateButton.setOnClickListener {
-            //val listView = findNavController().navigate(R.id.listView)
+
+
             sharedViewModel.setLoanAmount(binding.serieLoan.text.toString())
             sharedViewModel.setInterestRate(binding.serieInterest.text.toString())
             sharedViewModel.setInstallments(binding.serieInstallments.text.toString())
             sharedViewModel.calculateSerialPayment()
+            for (i in sharedViewModel.debtList) {
+                binding.debtList.text = i
+
+            }
 
 
         }
