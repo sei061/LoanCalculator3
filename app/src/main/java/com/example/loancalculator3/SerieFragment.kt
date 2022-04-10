@@ -80,11 +80,11 @@ class SerieFragment : Fragment() {
                 binding.deductionList.text = deductionString
             }
             var yearString : String = ""
-            for (i in sharedViewModel.termList) {
+            for (i in sharedViewModel.numOfYearList) {
                 yearString += i
                 yearString += "\n"
 
-                binding.deductionList.text = yearString
+                binding.yearList.text = yearString
             }
 
 

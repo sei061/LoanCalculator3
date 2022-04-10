@@ -95,12 +95,16 @@ class SharedViewModel: ViewModel() {
         }
 
         for (i in 0..installmentsDouble.toInt()) {
-            interestList.add((debtList[i].toDouble() * interestRateDouble).toString())
+            interestList.add((debtList[i].toDouble() * (interestRateDouble / 100)).toString())
         }
 
         for (i in 0..installmentsDouble.toInt()) {
            termList.add(i,i.toString())
         }
+        for (i in 0..installmentsDouble.toInt()) {
+            numOfYearList.add(i,(installmentsDouble.toInt()/12).toString())
+        }
+
     }
 }
 
