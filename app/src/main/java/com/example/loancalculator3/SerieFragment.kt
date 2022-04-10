@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -50,9 +49,42 @@ class SerieFragment : Fragment() {
             sharedViewModel.setInterestRate(binding.serieInterest.text.toString())
             sharedViewModel.setInstallments(binding.serieInstallments.text.toString())
             sharedViewModel.calculateSerialPayment()
-            for (i in sharedViewModel.debtList) {
-                binding.debtList.text = i
+            var debtString : String = ""
+                for (i in sharedViewModel.debtList) {
+                    debtString += i
+                    debtString += "\n"
 
+            binding.debtList.text = debtString
+            }
+
+            var termString : String = ""
+            for (i in sharedViewModel.termList.reversed()) {
+                termString += i
+                termString += "\n"
+
+                binding.termList.text = termString
+            }
+
+            var interestString : String = ""
+            for (i in sharedViewModel.interestList) {
+                interestString += i
+                interestString += "\n"
+
+                binding.interestList.text = interestString
+            }
+            var deductionString : String = ""
+            for (i in sharedViewModel.deductionList) {
+                deductionString += i
+                deductionString += "\n"
+
+                binding.deductionList.text = deductionString
+            }
+            var yearString : String = ""
+            for (i in sharedViewModel.termList) {
+                yearString += i
+                yearString += "\n"
+
+                binding.deductionList.text = yearString
             }
 
 

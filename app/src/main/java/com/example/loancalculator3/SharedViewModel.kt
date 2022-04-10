@@ -99,7 +99,7 @@ class SharedViewModel: ViewModel() {
         }
 
         for (i in 0..installmentsDouble.toInt()) {
-           termList.add(i, installmentsDouble.toString())
+           termList.add(i,i.toString())
         }
     }
 }
