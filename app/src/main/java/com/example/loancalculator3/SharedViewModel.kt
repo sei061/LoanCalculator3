@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 class SharedViewModel: ViewModel() {
 
@@ -34,50 +36,32 @@ class SharedViewModel: ViewModel() {
         _installments.value = installments
     }
 
-    //create a function that will take the loan amount and the interest rate and calculate the paymeent based on installments
     fun calculateAnnuityPayment() {
         val loanAmountDouble = loanAmount.value!!.toDouble()
-        val interestRateDouble = interestRate.value!!.toDouble()
+        var interestRateDouble = interestRate.value!!.toDouble()
         val installmentsDouble = installments.value!!.toDouble()
 
-        val installmentPayment = (loanAmountDouble * (interestRateDouble / 100) * Math.pow(
-            1 + (interestRateDouble / 100),
-            installmentsDouble
-        )) / (Math.pow(1 + (interestRateDouble / 100), installmentsDouble) - 1)
+        var installmentPayment = loanAmountDouble * (interestRateDouble / 100) / 12 * (1 + (interestRateDouble / 100) / 12)
+            .pow(installmentsDouble) / ((1 + (interestRateDouble / 100) / 12).pow(installmentsDouble) - 1)
 
-        val installmentPaymentString = String.format("%.2f", installmentPayment)
+        var remainingDebt = loanAmountDouble
+        var deduction = loanAmountDouble - interestRateDouble
 
-        _installments.value = installmentPaymentString
+        debtList.add(loanAmountDouble.toString())
 
-        for (i in 1..installmentsDouble.toInt()) {
-            val numOfYear = i.toString()
-            val debt = String.format(
-                "%.2f", (installmentPayment * (Math.pow(
-                    1 + (interestRateDouble / 100),
-                    i.toDouble()
-                ) - 1))
-            )
-            val term =
-                String.format("%.2f", (Math.pow(1 + (interestRateDouble / 100), i.toDouble()) - 1))
-            val interest = String.format(
-                "%.2f", (installmentPayment * (Math.pow(
-                    1 + (interestRateDouble / 100),
-                    i.toDouble()
-                ) - 1) * (interestRateDouble / 100))
-            )
-            val deduction = String.format(
-                "%.2f", (installmentPayment * (Math.pow(
-                    1 + (interestRateDouble / 100),
-                    i.toDouble()
-                ) - 1) * (interestRateDouble / 100) * 0.1)
-            )
+        for(i in 1..loanAmount.value!!.toInt()) {
+            numOfYearList.add(i.toString())
+            termList.add(installmentPayment.roundToInt().toString())
+            interestList.add((interestRateDouble.roundToInt()).toString())
+            deductionList.add(deduction.roundToInt().toString())
+            debtList.add((loanAmountDouble - deduction).roundToInt().toString())
+            remainingDebt -= deduction
+            interestRateDouble =
+                remainingDebt * (1.0 +( interestRateDouble / 100)) - remainingDebt
+            deduction = loanAmountDouble - interestRateDouble
 
-            numOfYearList.add(numOfYear)
-            debtList.add(debt)
-            termList.add(term)
-            interestList.add(interest)
-            deductionList.add(deduction)
         }
+
     }
     fun calculateSerialPayment() {
         val loanAmountDouble = loanAmount.value!!.toDouble()
@@ -85,6 +69,7 @@ class SharedViewModel: ViewModel() {
         val installmentsDouble = installments.value!!.toDouble()
 
         debtList.add(loanAmountDouble.toString())
+
 
         for (i in 0..installmentsDouble.toInt()) {
             deductionList.add(i, (loanAmountDouble/installmentsDouble).toString())

@@ -50,7 +50,51 @@ class AnnuitetFragment : Fragment() {
         }
 
         //
+        binding.calculateButton.setOnClickListener {
+            sharedViewModel.setLoanAmount(binding.annuitetLoan.text.toString())
+            sharedViewModel.setInterestRate(binding.annuitetInterest.text.toString())
+            sharedViewModel.setInstallments(binding.annuitetInstallments.text.toString())
+            sharedViewModel.calculateAnnuityPayment()
+            var debtString : String = "Debt:\n"
+            for (i in sharedViewModel.debtList) {
+                debtString += i
+                debtString += "\n"
 
+                binding.debtList.text = debtString
+            }
+
+            var termString : String = "Terms:\n"
+            for (i in sharedViewModel.termList.reversed()) {
+                termString += i
+                termString += "\n"
+
+                binding.termList.text = termString
+            }
+
+            var interestString : String = "Interest:\n"
+            for (i in sharedViewModel.interestList) {
+                interestString += i
+                interestString += "\n"
+
+                binding.interestList.text = interestString
+            }
+            var deductionString : String = "Deductions:\n"
+            for (i in sharedViewModel.deductionList) {
+                deductionString += i
+                deductionString += "\n"
+
+                binding.deductionList.text = deductionString
+            }
+            var yearString : String = "Years:\n"
+            for (i in sharedViewModel.termList) {
+                yearString += i
+                yearString += "\n"
+
+                binding.deductionList.text = yearString
+            }
+
+
+        }
 
 
         return binding.root

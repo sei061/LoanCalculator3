@@ -56,7 +56,7 @@ class SerieFragment : Fragment() {
             binding.debtList.text = debtString
             }
 
-            var termString : String = "Term:\n"
+            var termString : String = "Terms:\n"
             for (i in sharedViewModel.termList.reversed()) {
                 termString += i
                 termString += "\n"
@@ -71,20 +71,22 @@ class SerieFragment : Fragment() {
 
                 binding.interestList.text = interestString
             }
-            var deductionString : String = "Deduction:\n"
+            var deductionString : String = "Deductions:\n"
             for (i in sharedViewModel.deductionList) {
                 deductionString += i
                 deductionString += "\n"
 
                 binding.deductionList.text = deductionString
             }
-            var yearString : String = "Year:\n"
+            var yearString : String = "Years:\n"
             for (i in sharedViewModel.numOfYearList) {
                 yearString += i
                 yearString += "\n"
 
                 binding.yearList.text = yearString
             }
+
+
 
 
         }
