@@ -49,6 +49,8 @@ class AnnuitetFragment : Fragment() {
             sharedViewModel.calculateAnnuityPayment()
         }
 
+        //
+
 
 
         return binding.root
