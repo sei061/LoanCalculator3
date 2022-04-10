@@ -65,7 +65,7 @@ class SerieFragment : Fragment() {
                 binding.termList.text = termString
             }
 
-            var interestString : String = ""
+            var interestString : String = "Interest:\n"
             for (i in sharedViewModel.interestList) {
                 interestString += i
                 interestString += "\n"
